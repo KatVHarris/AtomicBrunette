@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: d67c23d6d0f6f8c4b9fa69c5f32c68ec
+timeCreated: 1492735424
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: AlarmPointer
+    100002: Base1
+    100004: Base2
+    100006: Bell1
+    100008: Bell2
+    100010: //RootNode
+    100012: Hammer
+    100014: handle
+    100016: HPointer
+    100018: MinPointer
+    100020: Pin1
+    100022: Pin2
+    100024: SPointer
+    400000: AlarmPointer
+    400002: Base1
+    400004: Base2
+    400006: Bell1
+    400008: Bell2
+    400010: //RootNode
+    400012: Hammer
+    400014: handle
+    400016: HPointer
+    400018: MinPointer
+    400020: Pin1
+    400022: Pin2
+    400024: SPointer
+    2300000: AlarmPointer
+    2300002: Base1
+    2300004: Base2
+    2300006: Bell1
+    2300008: Bell2
+    2300010: //RootNode
+    2300012: Hammer
+    2300014: handle
+    2300016: HPointer
+    2300018: MinPointer
+    2300020: Pin1
+    2300022: Pin2
+    2300024: SPointer
+    3300000: AlarmPointer
+    3300002: Base1
+    3300004: Base2
+    3300006: Bell1
+    3300008: Bell2
+    3300010: //RootNode
+    3300012: Hammer
+    3300014: handle
+    3300016: HPointer
+    3300018: MinPointer
+    3300020: Pin1
+    3300022: Pin2
+    3300024: SPointer
+    4300000: AlarmClock
+    4300002: AlarmPointer
+    4300004: SPointer
+    4300006: HPointer
+    4300008: MinPointer
+    4300010: Base2
+    4300012: Base1
+    4300014: Pin1
+    4300016: handle
+    4300018: Pin2
+    4300020: Bell2
+    4300022: Bell1
+    4300024: Hammer
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
