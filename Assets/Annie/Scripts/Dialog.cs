@@ -5,15 +5,17 @@ using UnityEngine;
 public class Dialog : MonoBehaviour {
 
 	public AudioClip[] dialog;
+    
 	private int current;
 	AudioSource audioSource;
 	public string key;
-
+    bool isPlayingAudio;
 	// Use this for initialization
 	void Start () {
 		audioSource = GetComponent<AudioSource>();
+        isPlayingAudio = false;
 		//dialog = GetComponents<AudioClip> ();
-		current = 0;
+		//current = 0;
 	}
 
 	void PlayNext(){
@@ -22,8 +24,11 @@ public class Dialog : MonoBehaviour {
 	}
 
 	public void PlayAtIndex(int index){
+        isPlayingAudio = true;
 		audioSource.PlayOneShot (dialog [index]);
 	}
+
+
 
 	// Update is called once per frame
 	void Update () {
@@ -31,5 +36,10 @@ public class Dialog : MonoBehaviour {
 			print ("space key was pressed");	
 			PlayNext ();
 		}
+
+        if (isPlayingAudio)
+        {
+
+        }
 	}
 }
