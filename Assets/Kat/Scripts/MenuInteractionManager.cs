@@ -21,6 +21,13 @@ public class MenuInteractionManager : MonoBehaviour {
                 ///other.transform.gameObject.SetActive(false);
                 StartMenu.SetActive(false);
             }
+
+			if(other.transform.name == "MissionMenuQuad")
+			{
+				// Start Playing Dialog
+				GameManager.gameManager.ShowMissionAcceptScreen();
+				///other.transform.gameObject.SetActive(false);
+			}
         }
     }
 }

@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour {
     private int _level;
     private int _score;
     private int _voiceType;
-    public GameObject DialogManager; 
+    public GameObject DialogManagerObject; 
+	DialogManager DialogManager;
 
-    public GameObject MenuSystem;
+    public GameObject StartMenu;
+	public GameObject MissionMenu;
     private void Awake()
     {
         gameManager = this;
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour {
         //StartCoroutine(ChangeScene("Level1"));
         _level = 0; 
         DontDestroyOnLoad(gameObject);
+		DialogManager = DialogManagerObject.GetComponent<DialogManager> ();
 	}
 	
 	/// <summary>
@@ -38,7 +41,16 @@ public class GameManager : MonoBehaviour {
 
     public void StartDialog(int DialogIndex)
     {
-        
+		DialogManager.dialogManager.gamestarted = true;
     }
+
+	public void DoneWithDialogScene(int curDialogSequence){
+		if (curDialogSequence == 0) {
+			ShowMissionAcceptScreen ();
+		}
+	}
     
+	public void ShowMissionAcceptScreen(){
+		MissionMenu.SetActive (true);
+	}
 }
