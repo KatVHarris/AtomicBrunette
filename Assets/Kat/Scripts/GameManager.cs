@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     private int _level;
     private int _score;
     private int _voiceType;
+    public GameObject DialogManager; 
 
     public GameObject MenuSystem;
     private void Awake()
@@ -33,6 +34,11 @@ public class GameManager : MonoBehaviour {
     {
         Debug.Log("Loading");
         SceneManager.LoadSceneAsync(name);
+    }
+
+    public void StartDialog(int DialogIndex)
+    {
+        
     }
     
 }
