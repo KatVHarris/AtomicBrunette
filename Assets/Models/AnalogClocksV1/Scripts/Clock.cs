@@ -106,10 +106,10 @@ public class Clock : MonoBehaviour
         }
         if (ClockType == "Clock2") { 
             if (PlayPointerSound){
-                transform.FindChild("ColSec").gameObject.SetActive(true);
+                transform.Find("ColSec").gameObject.SetActive(true);
             }else
             {
-                transform.FindChild("ColSec").gameObject.SetActive(false);
+                transform.Find("ColSec").gameObject.SetActive(false);
             }
         }
 
@@ -153,14 +153,14 @@ public class Clock : MonoBehaviour
 //        switch (clocktype)
 //        {
 //            case "Clock3":
-                Renderer rendBell1 = transform.FindChild("Bell1").GetComponent<Renderer>();
-                Renderer rendBell2 = transform.FindChild("Bell2").GetComponent<Renderer>();
-                Renderer rendBase1 = transform.FindChild("Base1").GetComponent<Renderer>();
-                Renderer rendBase2 = transform.FindChild("Base2").GetComponent<Renderer>();
-                Renderer rendHammer = transform.FindChild("Hammer").GetComponent<Renderer>();
-                Renderer rendhandle = transform.FindChild("handle").GetComponent<Renderer>();
-                Renderer rendPin1 = transform.FindChild("Pin1").GetComponent<Renderer>();
-                Renderer rendPin2 = transform.FindChild("Pin2").GetComponent<Renderer>();
+                Renderer rendBell1 = transform.Find("Bell1").GetComponent<Renderer>();
+                Renderer rendBell2 = transform.Find("Bell2").GetComponent<Renderer>();
+                Renderer rendBase1 = transform.Find("Base1").GetComponent<Renderer>();
+                Renderer rendBase2 = transform.Find("Base2").GetComponent<Renderer>();
+                Renderer rendHammer = transform.Find("Hammer").GetComponent<Renderer>();
+                Renderer rendhandle = transform.Find("handle").GetComponent<Renderer>();
+                Renderer rendPin1 = transform.Find("Pin1").GetComponent<Renderer>();
+                Renderer rendPin2 = transform.Find("Pin2").GetComponent<Renderer>();
                 Renderer rendCenter = GetComponent<Renderer>();
                 Material mat = new Material(rendBell1.sharedMaterial);
                 mat.SetColor("_SpecColor", NewColor);
