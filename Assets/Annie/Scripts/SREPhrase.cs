@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// <summary>
 /// An Example of how to configure and use the SRE for a Reading Tracker Session. Setup the language, voice type, difficulty and text in the Editor. Click on the text at runtime to execute the tracker.
 /// </summary>
-public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicInterfaces.ReadingTrackerCallback {
+public class SREPhrase : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicInterfaces.ListenForPhrasesCallback {
 
 	public List<Text> lineTextList;
 
@@ -29,8 +29,6 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	public SonicInterfaces.VoiceType voiceType = SonicInterfaces.VoiceType.FEMALE;
 	public SonicInterfaces.Difficulty difficulty = SonicInterfaces.Difficulty.Level1;
 
-	public int currentSequence;
-
 	//TextMutator mutator;
 
 	public bool isActive(){
@@ -38,7 +36,6 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	}
 
 	void Start(){
-		currentSequence = 0;
 		int indexCount = 0;
 		for (int i = 0; i < lineTextList.Count; ++i) {
 			Debug.Log ("index: " + indexCount);
@@ -70,18 +67,21 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	}
 
 	public void Begin(){
-		SonicSREImpl.Instance.readingTracker(PhraseAsString(), this);
+		List<string> phrases = new List<string>();
+		phrases.Add ("hola me llamo paco");
+		SonicSREImpl.Instance.listenForPhrases(phrases, this);
 		Debug.Log("ready");
 		isPlaying = true;
 	}
 
 	void Update(){
+		/*
 		if (Input.GetKeyDown("space") && !activeSession ) {
 			// change color
 			// lineTextList [0].color = Color.red;
 			SonicSREImpl.Instance.readingTracker(PhraseAsString(), this);
-            Debug.Log("ready");
-		}
+			Debug.Log("ready");
+		}*/
 	}
 
 	void OnMouseDown() {
@@ -93,9 +93,24 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 		//	SonicSREImpl.Instance.readingTracker(text.text, this);
 		//}
 	}
+	#region LFPUpdate
+	void SonicInterfaces.ListenForPhrasesCallback.onLFPStart(){
+		Debug.Log ("LFP Start");
+	}
+	void SonicInterfaces.ListenForPhrasesCallback.onLFPUpdate(float energy, string phrase){
+		Debug.Log ("Heard: " + phrase + ", Energy=" + energy);
+	}
+	void SonicInterfaces.ListenForPhrasesCallback.onLFPComplete(SonicInterfaces.ListenForPhrasesResult result) {
+		Debug.Log ("LFP Complete: passed=" + result.passed + ", score=" + result.pronunciationScore + ", overallScore=" + result.overallScore);
+		isPlaying = false;
+	}
+	void SonicInterfaces.ListenForPhrasesCallback.onLFPError(string message){
+		Debug.Log ("LFP Error: " + message);
+	}
 
+	#endregion
 	#region ReadingTracker
-
+	/*
 	/// <summary>
 	/// Called when the Reading Tracker session begins.
 	/// </summary>
@@ -113,7 +128,6 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	void SonicInterfaces.ReadingTrackerCallback.onReadingTrackerUpdate (float energy, SonicInterfaces.ReadingTrackerUpdateResult updateResult) {
 		//Debug.Log ("Update");
 		Debug.Log (updateResult.wordStartIndex);
-		Debug.Log ("length: " + updateResult.wordLength);
 		indexedLineTextDict [updateResult.wordStartIndex].color = Color.yellow;
 		//mutator.washText();
 		//text.text = mutator.highlight(updateResult.wordStartIndex, updateResult.wordLength, highlightColor);
@@ -125,10 +139,8 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	/// <param name="result">Result.</param>
 	void SonicInterfaces.ReadingTrackerCallback.onReadingTrackerComplete (SonicInterfaces.ReadingTrackerResult result) {
 		Debug.Log ("Complete");
-		SonicInterfaces.ReadingTrackerScore score = result.score;
-		DialogManager.dialogManager.SREDone (currentSequence, score.final);
 		//mutator.washText();
-		/*
+
 		//Since we are inserting, appending and otherwise adjusting the length of our display string: work in reverse to preserve indices.
 		List<SonicInterfaces.ReadingTrackerWordResult> reversedWords = new List<SonicInterfaces.ReadingTrackerWordResult>(result.words); 
 		reversedWords.Reverse();
@@ -154,9 +166,8 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 				Debug.Log (">4: " + word.text);
 				indexedLineTextDict [word.startIndex].color = Color.cyan;
 			}
-		
+
 		}
-		*/
 		isPlaying = false;
 		SonicSREImpl.Instance.interrupt();
 
@@ -170,7 +181,7 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 
 		activeSession = false;
 	}
-
+	*/
 	#endregion
 
 	#region Configuration
