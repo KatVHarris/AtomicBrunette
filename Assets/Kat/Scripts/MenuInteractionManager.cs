@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuInteractionManager : MonoBehaviour {
-
+	public string LEVEL_NAME;
     public GameObject StartMenu;
+
+	void Start(){
+		LEVEL_NAME = "Scene1";
+	}
 
     void OnTriggerEnter(Collider other)
     {
@@ -24,9 +28,8 @@ public class MenuInteractionManager : MonoBehaviour {
 
 			if(other.transform.name == "MissionMenuQuad")
 			{
-				// Start Playing Dialog
-				GameManager.gameManager.ShowMissionAcceptScreen();
-				///other.transform.gameObject.SetActive(false);
+				GameManager.gameManager.LoadLevelRequest (LEVEL_NAME);
+
 			}
         }
     }

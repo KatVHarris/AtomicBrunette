@@ -53,4 +53,8 @@ public class GameManager : MonoBehaviour {
 	public void ShowMissionAcceptScreen(){
 		MissionMenu.SetActive (true);
 	}
+
+	public void LoadLevelRequest(string levelName){
+		LoadNewLevel (levelName);
+	}
 }
