@@ -34,7 +34,7 @@ public class DialogManager : MonoBehaviour {
 				// Create start mission Menu
 				Debug.Log ("done");
 
-				//GameManager.gameManager.DoneWithDialogScene (0);
+				GameManager.gameManager.DoneWithDialogScene (0);
 
 
 			} else {
