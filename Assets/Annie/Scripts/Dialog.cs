@@ -8,17 +8,31 @@ public class Dialog : MonoBehaviour {
 	private int current;
 	AudioSource audioSource;
 	public string key;
+	public string id;
+	private bool hasNext;
 
 	// Use this for initialization
 	void Start () {
 		audioSource = GetComponent<AudioSource>();
 		//dialog = GetComponents<AudioClip> ();
 		current = 0;
+		hasNext = (current < dialog.Length);
+	}
+		
+
+	public bool isActive(){
+		return audioSource.isPlaying;
 	}
 
-	void PlayNext(){
-		audioSource.PlayOneShot (dialog [current]);
-		current = (current + 1) % dialog.Length;
+	public void PlayNext(){
+		if (hasNext) {
+			audioSource.PlayOneShot (dialog [current]);
+			current = (current + 1);
+			hasNext = current < dialog.Length;
+		} else {
+			Debug.Log ("does not have next clip");
+		}
+
 	}
 
 	public void PlayAtIndex(int index){
