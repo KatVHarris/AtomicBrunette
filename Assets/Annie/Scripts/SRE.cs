@@ -23,12 +23,17 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	private Color unspokenColor = Color.gray;
 
 	private bool activeSession = true;
+	private bool isPlaying = false;
 
 	public SonicInterfaces.Language language = SonicInterfaces.Language.SPANISH;
 	public SonicInterfaces.VoiceType voiceType = SonicInterfaces.VoiceType.FEMALE;
 	public SonicInterfaces.Difficulty difficulty = SonicInterfaces.Difficulty.Level1;
 
 	//TextMutator mutator;
+
+	public bool isActive(){
+		return isPlaying;
+	}
 
 	void Start(){
 		int indexCount = 0;
@@ -46,11 +51,11 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	string PhraseAsString(){
 		string phrase = "";
 		for(int i=0; i<lineTextList.Count; ++i) {
-			Debug.Log ("loop " + lineTextList[i].text);
+			//Debug.Log ("loop " + lineTextList[i].text);
 			phrase += lineTextList[i].text;
 			phrase += " ";
 		}
-		Debug.Log("Concate phrase: "+phrase);
+		//Debug.Log("Concate phrase: "+phrase);
 		return phrase;
 	}
 
@@ -59,6 +64,12 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 		SonicSREImpl.Instance.configure(language, voiceType,  difficulty, this);
 		//And object that handles the manipulation of our display string
 		//mutator = new TextMutator(text.text);
+	}
+
+	public void Begin(){
+		SonicSREImpl.Instance.readingTracker(PhraseAsString(), this);
+		Debug.Log("ready");
+		isPlaying = true;
 	}
 
 	void Update(){
@@ -86,7 +97,7 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	/// Called when the Reading Tracker session begins.
 	/// </summary>
 	void SonicInterfaces.ReadingTrackerCallback.onReadingTrackerStart () {
-
+		Debug.Log ("activating");
 		activeSession = true;
 	}
 
@@ -97,7 +108,8 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	/// <param name="energy">Energy.</param>
 	/// <param name="updateResult">Update result.</param>
 	void SonicInterfaces.ReadingTrackerCallback.onReadingTrackerUpdate (float energy, SonicInterfaces.ReadingTrackerUpdateResult updateResult) {
-		Debug.Log ("Update");
+		//Debug.Log ("Update");
+		Debug.Log (updateResult.wordStartIndex);
 		indexedLineTextDict [updateResult.wordStartIndex].color = Color.yellow;
 		//mutator.washText();
 		//text.text = mutator.highlight(updateResult.wordStartIndex, updateResult.wordLength, highlightColor);
@@ -138,9 +150,11 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 			}
 		
 		}
+		isPlaying = false;
+		SonicSREImpl.Instance.interrupt();
 
 		//text.text = mutator.currentText();
-
+		Debug.Log("over");
 		activeSession = false;
 	}
 
