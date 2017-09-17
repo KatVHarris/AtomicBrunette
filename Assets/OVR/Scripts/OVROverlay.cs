@@ -382,10 +382,15 @@ public class OVROverlay : MonoBehaviour
 						et = Texture2D.CreateExternalTexture(size.w, size.h, txFormat, mipLevels > 1, isSrgb, externalTex);
 #if UNITY_2017_1_OR_NEWER
 					else
+<<<<<<< HEAD
 						et = Cubemap.CreateExternalTexture(size.w, txFormat, mipLevels > 1, externalTex);
+=======
+                    //    et = Cubemap.CreateExternalTexture(size.w, size.h, txFormat, mipLevels > 1, isSrgb, externalTex);
+                        et = Cubemap.CreateExternalTexture(size.w, /* size.h, */ txFormat, mipLevels > 1, /*isSrgb, */ externalTex);
+>>>>>>> a02e9bb323804c210d0c1907f10de1aacfb10379
 #endif
-					
-					externalTextures[eyeId][stage] = et;
+
+                    externalTextures[eyeId][stage] = et;
 					needsCopy = true;
 				}
 

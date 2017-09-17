@@ -28,7 +28,7 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	public SonicInterfaces.VoiceType voiceType = SonicInterfaces.VoiceType.FEMALE;
 	public SonicInterfaces.Difficulty difficulty = SonicInterfaces.Difficulty.Level1;
 
-	TextMutator mutator;
+	//TextMutator mutator;
 
 	void Start(){
 		int indexCount = 0;
@@ -72,11 +72,11 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 	void OnMouseDown() {
 		//You can call interrupt if you wish to interrupt the session
 		//SonicSREImpl.Instance.interrupt();
-		if (!activeSession) {
-			//Reset text and start the Reading Tracker.
-			text.text = mutator.washText();
-			SonicSREImpl.Instance.readingTracker(text.text, this);
-		}
+		//if (!activeSession) {
+		//	//Reset text and start the Reading Tracker.
+		//	text.text = mutator.washText();
+		//	SonicSREImpl.Instance.readingTracker(text.text, this);
+		//}
 	}
 
 	#region ReadingTracker
