@@ -23,6 +23,7 @@ public class DialogManager : MonoBehaviour {
 	public void SREDone(int sequence, float score){
 		currentSpeakerIndex++;
 		Debug.Log ("index after done: " + currentSpeakerIndex);
+		isPlaying = false;
 	}
 
 	// Update is called once per frame
