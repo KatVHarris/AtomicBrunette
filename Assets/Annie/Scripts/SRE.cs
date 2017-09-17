@@ -66,6 +66,7 @@ public class SRE : MonoBehaviour, SonicInterfaces.ConfigurationCallback, SonicIn
 			// change color
 			// lineTextList [0].color = Color.red;
 			SonicSREImpl.Instance.readingTracker(PhraseAsString(), this);
+            Debug.Log("ready");
 		}
 	}
 
