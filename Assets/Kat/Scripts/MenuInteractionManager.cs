@@ -7,7 +7,7 @@ public class MenuInteractionManager : MonoBehaviour {
     public GameObject StartMenu;
 
 	void Start(){
-		LEVEL_NAME = "Scene1";
+		LEVEL_NAME = "ElSavador";
 	}
 
     void OnTriggerEnter(Collider other)
