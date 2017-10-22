@@ -100,7 +100,6 @@ public class OVRGearVrControllerTest : MonoBehaviour
 		monitors = new List<BoolMonitor>()
 		{
 			// virtual
-			new BoolMonitor("WasRecentered",            () => OVRInput.GetControllerWasRecentered()),
 			new BoolMonitor("One",                      () => OVRInput.Get(OVRInput.Button.One)),
 			new BoolMonitor("OneDown",                  () => OVRInput.GetDown(OVRInput.Button.One)),
 			new BoolMonitor("OneUp",                    () => OVRInput.GetUp(OVRInput.Button.One)),
@@ -138,11 +137,6 @@ public class OVRGearVrControllerTest : MonoBehaviour
 		OVRInput.Controller activeController = OVRInput.GetActiveController();
 
 		data.Length = 0;
-		byte recenterCount = OVRInput.GetControllerRecenterCount();
-		data.AppendFormat("RecenterCount: {0}\n", recenterCount);
-
-		byte battery = OVRInput.GetControllerBatteryPercentRemaining();
-		data.AppendFormat("Battery: {0}\n", battery);
 
 		float framerate = OVRPlugin.GetAppFramerate();
 		data.AppendFormat("Framerate: {0:F2}\n", framerate);

@@ -153,7 +153,7 @@ public class OVRGrabbable : MonoBehaviour
         }
     }
 
-    protected virtual void Start()
+    void Start()
     {
         m_grabbedKinematic = GetComponent<Rigidbody>().isKinematic;
     }

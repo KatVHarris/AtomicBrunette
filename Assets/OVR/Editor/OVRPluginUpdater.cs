@@ -70,7 +70,7 @@ class OVRPluginUpdater
 		return new PluginPackage()
 		{
 			RootPath = rootPath,
-			Version = GetPluginVersion(rootPath),
+			Version = GetPluginVersion(rootPath + GetPluginBuildTargetSubPath(BuildTarget.StandaloneWindows64)),
 			Plugins = new Dictionary<BuildTarget, string>()
 			{
 				{ BuildTarget.Android, rootPath + GetPluginBuildTargetSubPath(BuildTarget.Android) },
@@ -169,41 +169,19 @@ class OVRPluginUpdater
 
 	private static System.Version GetPluginVersion(string path)
 	{
-		System.Version invalidVersion = new System.Version("0.0.0");
-		System.Version pluginVersion = invalidVersion;
-
-		try
+		if (!File.Exists(path))
 		{
-			pluginVersion = new System.Version(Path.GetFileName(path));
-		}
-		catch
-		{
-			pluginVersion = invalidVersion;
-		}
-
-		if (pluginVersion == invalidVersion)
-		{
-			//Unable to determine version from path, fallback to Win64 DLL meta data
-			path += GetPluginBuildTargetSubPath(BuildTarget.StandaloneWindows64);
+			path += GetDisabledPluginSuffix();
 			if (!File.Exists(path))
 			{
-				path += GetDisabledPluginSuffix();
-				if (!File.Exists(path))
-				{
-					return invalidVersion;
-				}
+				return new System.Version("0.0.0");
 			}
-
-			FileVersionInfo pluginVersionInfo = FileVersionInfo.GetVersionInfo(path);
-			if (pluginVersionInfo == null || pluginVersionInfo.ProductVersion == null || pluginVersionInfo.ProductVersion == "")
-			{
-				return invalidVersion;
-			}
-
-			pluginVersion = new System.Version(pluginVersionInfo.ProductVersion);
 		}
 
-		return pluginVersion;
+		FileVersionInfo pluginVersionInfo = FileVersionInfo.GetVersionInfo(path);
+		if (pluginVersionInfo == null || pluginVersionInfo.ProductVersion == null || pluginVersionInfo.ProductVersion == "")
+			return new System.Version("0.0.0");
+		return new System.Version(pluginVersionInfo.ProductVersion);
 	}
 	
 	private static bool ShouldAttemptPluginUpdate()
@@ -328,11 +306,11 @@ class OVRPluginUpdater
 	private static bool autoUpdateEnabled
 	{
 		get {
-			return PlayerPrefs.GetInt(autoUpdateEnabledKey, 1) == 1;
+			return EditorPrefs.GetBool(autoUpdateEnabledKey, true);
 		}
 
 		set {
-			PlayerPrefs.SetInt(autoUpdateEnabledKey, value ? 1 : 0);
+			EditorPrefs.SetBool(autoUpdateEnabledKey, value);
 		}
 	}
 

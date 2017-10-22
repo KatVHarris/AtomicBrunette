@@ -83,7 +83,7 @@ public class AvatarMaterialEditor : MaterialEditor {
         {
             previewUtility = new PreviewRenderUtility();
             GameObject gameObject = (GameObject)EditorGUIUtility.LoadRequired("Previews/PreviewMaterials.fbx");
-            previewMesh = gameObject.transform.Find("sphere").GetComponent<MeshFilter>().sharedMesh;
+            previewMesh = gameObject.transform.FindChild("sphere").GetComponent<MeshFilter>().sharedMesh;
         }
 
         baseMaskParametersCache[(int)LayerMaskType.Positional] = PositionalMaskDefaults;
